@@ -127,9 +127,9 @@ const description = "This is an NFT made by the coolest generative code.";
 // the id of the nft will be added to this url, in the example e.g. https://hashlips/nft/1 for NFT with id 1
 const baseImageUri = "https://hashlips/nft";
 // id for edition to start from
-const startEditionFrom = 0;
+const startEditionFrom = 1;
 // amount of NFTs to generate in edition
-const editionSize = 10;
+const editionSize = 50;
 // prefix to add to edition dna ids (to distinguish dna counts from different generation processes for the same collection)
 const editionDnaPrefix = 0
 
@@ -137,27 +137,25 @@ const editionDnaPrefix = 0
 // for each weight, call 'addRarity' with the id and from which to which element this rarity should be applied
 // Is very important see the order because with it the program assigns the id for each asset on each layer
 let rarityWeights = [
-  addRarity('super_rare', 0, 10),
-  addRarity('rare', 0, 10),
-  addRarity('original', 0, 10),
+  addRarity('original', 40, 50),
+  addRarity('super_rare', 10, 40),
+  addRarity('rare', 1, 10),
+  
 ];
 
 // create required layers
 // for each layer, call 'addLayer' with the id and optionally the positioning and size
 // the id would be the name of the folder in your input directory, e.g. 'ball' for ./input/ball
 const layers = [
-  addLayer('letraC/mayuscula', { x: 0, y: 0 }, { width: width, height: height }),
-  addLayer('letraB/mayuscula'),
-  addLayer('letraQ/mayuscula'),
-  addLayer('letraA/mayuscula'),
+  addLayer('Background', { x: 0, y: 0 }, { width: width, height: height }),
+  addLayer('CB'),
+  addLayer('QA'),
 ];
 
 // provide any specific percentages that are required for a given layer and rarity level
 // all provided options are used based on their percentage values to decide which layer to select from
-addRarityPercentForLayer('super_rare', 'letraC/mayuscula',  { 'super_rare': 34, 'rare': 33, 'original': 33 });
-addRarityPercentForLayer('super_rare', 'letraB/mayuscula',  { 'super_rare': 33, 'rare': 34, 'original': 33 });
-addRarityPercentForLayer('super_rare', 'letraQ/mayuscula',  { 'super_rare': 33, 'rare': 33, 'original': 34 });
-addRarityPercentForLayer('super_rare', 'letraA/mayuscula',  { 'super_rare': 34, 'rare': 33, 'original': 33 });
+addRarityPercentForLayer('super_rare', 'CB',  { 'super_rare': 40, 'rare': 30, 'original': 30});
+addRarityPercentForLayer('super_rare', 'QA',  { 'super_rare': 30, 'rare':  40, 'original': 30 });
 
 module.exports = {
   layers,
